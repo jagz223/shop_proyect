@@ -4,9 +4,12 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ItemResource\Pages;
 use App\Filament\Resources\ItemResource\RelationManagers;
+use App\Models\Category;
 use App\Models\Item;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\MultiSelect;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -31,6 +34,13 @@ class ItemResource extends Resource
             FileUpload::make('image')->image()->nullable(),
             TextInput::make('price')->numeric()->required(),
             TextInput::make('discount')->numeric()->required(),
+
+            Select::make('categories')
+            ->relationship(name: 'categories', titleAttribute: 'name')
+            ->options(fn () => Category::query()->pluck('name', 'id')->toArray())
+            ->searchable()
+            ->multiple(),
+
         ]);
     }
 

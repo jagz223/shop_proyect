@@ -16,4 +16,11 @@ class Item extends Model
         'price',
         'discount',
     ];
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'category_item');
+    }
+
+
 }
