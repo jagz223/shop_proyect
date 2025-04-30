@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class AddressResource extends Resource
 {
@@ -23,28 +24,15 @@ class AddressResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('user_id')
-                    ->relationship('user', 'name')
-                    ->required(),
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('address')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('latitude')
-                    ->required()
-                    ->numeric()
-                    ->step('0.00000001')
-                    ->minValue(-90)
-                    ->maxValue(90),
-                Forms\Components\TextInput::make('longitude')
-                    ->required()
-                    ->numeric()
-                    ->step('0.00000001')
-                    ->minValue(-180)
-                    ->maxValue(180),
-                Forms\Components\Toggle::make('is_default')
+                Forms\Components\Hidden::make('user_id')
+                    ->default(fn () => Auth::id()),
+                Forms\Components\Hidden::make('name'),
+                Forms\Components\Hidden::make('address'),
+                Forms\Components\View::make('filament.forms.components.leaflet-map')
+                    ->columnSpanFull(),
+                Forms\Components\Hidden::make('latitude'),
+                Forms\Components\Hidden::make('longitude'),
+                Forms\Components\Hidden::make('is_default')
                     ->default(false),
             ]);
     }
@@ -98,5 +86,11 @@ class AddressResource extends Resource
             'create' => Pages\CreateAddress::route('/create'),
             'edit' => Pages\EditAddress::route('/{record}/edit'),
         ];
+    }
+
+    // Asegurarnos de que los usuarios solo vean sus propias direcciones
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->where('user_id', Auth::id());
     }
 }
