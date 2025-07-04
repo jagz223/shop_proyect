@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Order extends Model
 {
@@ -15,29 +16,16 @@ class Order extends Model
         'total',
         'payment_method',
         'verification',
-        'delivery_method',
-        'address_id',
-        'details',
-        'cash_payment_amount',
+        'delivery_method'
     ];
 
-    // Relación: Un pedido pertenece a un usuario
-    public function user()
+    protected $casts = [
+        'total' => 'decimal:2',
+        'verification' => 'boolean',
+    ];
+
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    // Relación: Un pedido pertenece a una dirección
-    public function address()
-    {
-        return $this->belongsTo(Address::class);
-    }
-
-    // Relación: Un pedido tiene muchos items (relación muchos a muchos)
-    public function items()
-    {
-        return $this->belongsToMany(Item::class, 'order_item')
-            ->withPivot('quantity', 'price_unit')
-            ->withTimestamps();
     }
 }
