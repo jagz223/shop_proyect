@@ -66,17 +66,7 @@
         @if($activeTab === 'orders')
             <x-filament::card>
                 <div class="p-6">
-                    <h3 class="text-lg font-semibold mb-4">Mis Órdenes</h3>
-                    <div class="text-center py-12">
-                        <x-heroicon-o-wrench-screwdriver class="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                        <h4 class="text-lg font-medium text-gray-900 mb-2">Funcionalidad en Desarrollo</h4>
-                        <p class="text-gray-500 mb-4">
-                            La gestión de órdenes está siendo desarrollada por nuestro equipo técnico.
-                        </p>
-                        <p class="text-sm text-gray-400">
-                            Pronto podrás ver aquí todas tus órdenes y su estado.
-                        </p>
-                    </div>
+                    @livewire('user-orders', ['user' => $user])
                 </div>
             </x-filament::card>
         @endif
