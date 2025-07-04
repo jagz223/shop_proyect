@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación del Proyecto - Shop Proyect</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f7f7fa;
+            color: #222;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            padding: 40px 32px 32px 32px;
+        }
+        h1, h2, h3 {
+            color: #2a3a5e;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        h2 {
+            margin-top: 32px;
+            border-bottom: 2px solid #e0e4ea;
+            padding-bottom: 6px;
+        }
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        li {
+            margin-bottom: 10px;
+            padding: 10px 16px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        .listo {
+            background: #e6f9e6;
+            color: #217a36;
+            border-left: 5px solid #4caf50;
+        }
+        .pendiente {
+            background: #fff3e6;
+            color: #b26a00;
+            border-left: 5px solid #ff9800;
+        }
+        .fix {
+            background: #e6f0fa;
+            color: #1a4a7a;
+            border-left: 5px solid #2196f3;
+        }
+        .observaciones {
+            background: #f9fbe7;
+            color: #757500;
+            border-left: 5px solid #cddc39;
+            margin-bottom: 20px;
+        }
+        .tecnologia, .funcionamiento {
+            background: #f0f4c3;
+            color: #33691e;
+            border-left: 5px solid #8bc34a;
+            margin-bottom: 20px;
+            padding: 12px 18px;
+            border-radius: 6px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 16px 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Documentación del Proyecto</h1>
+        <h3>Shop Proyect - Laravel + Filament PHP</h3>
+
+        <div class="tecnologia">
+            <strong>Tecnologías utilizadas:</strong>
+            <ul>
+                <li>Backend: <code>Laravel 10.x</code></li>
+                <li>Panel de administración: <code>Filament PHP</code></li>
+                <li>Frontend: Blade, Livewire, TailwindCSS</li>
+                <li>Base de datos: MySQL</li>
+                <li>Mapas: Leaflet.js</li>
+            </ul>
+        </div>
+
+        <div class="funcionamiento">
+            <strong>¿Cómo funciona el sistema?</strong>
+            <ul>
+                <li>Permite a los usuarios explorar productos, filtrarlos por nombre o categoría y agregarlos a un carrito temporal.</li>
+                <li>Gestión de direcciones con mapa interactivo y referencia.</li>
+                <li>Registro y edición de categorías, items y direcciones.</li>
+                <li>Pedidos con selección de dirección, forma de entrega y método de pago.</li>
+                <li>Panel de administración para gestión de pedidos, usuarios y roles.</li>
+            </ul>
+        </div>
+
+        <h2>✔️ Funcionalidades Listas</h2>
+        <ul>
+            <li class="listo">Agregar items al carrito temporal (arreglo de ids, suma del total)</li>
+            <li class="listo">Agregar fotos</li>
+            <li class="listo">Agregar categorías y registro/edición (tabla categorías y tabla intermedia)</li>
+            <li class="listo">Agregar filtros por categoría de items</li>
+            <li class="listo">Agregar filtro por nombre</li>
+            <li class="listo">Agregar tabla de dirección</li>
+            <li class="listo">Agregar registro, edición y eliminación de dirección (con mapa de Google, latitud, longitud y punto de referencia)</li>
+        </ul>
+
+        <h2>🕗 Funcionalidades Pendientes</h2>
+        <ul>
+            <li class="pendiente">Agregar tabla de pedido</li>
+            <li class="pendiente">Agregar vista de usuario / información de usuario (Direcciones, Órdenes, Información, Cambiar contraseña, Cerrar sesión)</li>
+            <li class="pendiente">Agregar tabla intermedia entre item y pedido</li>
+            <li class="pendiente">Registro de pedido (user_id, status como Incompleto automáticamente)</li>
+            <li class="pendiente">Agregar vista del pedido (User)</li>
+            <li class="pendiente">Edición de pedido</li>
+            <li class="pendiente">Agregar a la tabla de pedidos address_id</li>
+            <li class="pendiente">Agregar forma de entrega (Delivery / Pick Up / Para comer allá)</li>
+            <li class="pendiente">Select de direcciones en edición de pedido (solo si es delivery)</li>
+            <li class="pendiente">Botón para registrar nueva dirección desde pedidos (solo si es delivery, abre modal)</li>
+            <li class="pendiente">Agregar lista de items del modal del carrito</li>
+            <li class="pendiente">Eliminar todos los items del pedido elimina el pedido y redirige a items</li>
+            <li class="pendiente">Agregar a pagar por items</li>
+            <li class="pendiente">Agregar a pagar por delivery (actualmente $1/km, punto inicial: dirección de la tienda)</li>
+            <li class="pendiente">Cálculo total (items + delivery)</li>
+            <li class="pendiente">Seleccionar método de pago (efectivo y pago móvil, a futuro más)</li>
+            <li class="pendiente">Valor del billete (solo si es efectivo)</li>
+            <li class="pendiente">Subir comprobante de pago (imagen)</li>
+            <li class="pendiente">No se puede editar después de confirmar y subir comprobante</li>
+            <li class="pendiente">Al confirmar, status pasa a Por verificar automáticamente</li>
+            <li class="pendiente">Validaciones para el botón de confirmar</li>
+            <li class="pendiente">Hacer funcionales los roles</li>
+            <li class="pendiente">Vista y edición de pedidos (Admin)</li>
+            <li class="pendiente">Edición de estados de pedido (Incompleto / Por Verificar / En Proceso / Cancelado / Completado)</li>
+            <li class="pendiente">Filtro de pedidos por estatus</li>
+            <li class="pendiente">Notificaciones (al llegar o editar/completar pedido)</li>
+            <li class="pendiente">Modificar pantalla principal</li>
+            <li class="pendiente">Enviar email (al llegar o editar/completar pedido)</li>
+        </ul>
+
+        <h2>🛠️ Fixes y Mejoras</h2>
+        <ul>
+            <li class="fix">Optimizar el sistema para mayor velocidad</li>
+            <li class="fix">Al crear items, el campo discount debe estar en 0 automáticamente</li>
+        </ul>
+
+        <h2>🔎 Observaciones</h2>
+        <div class="observaciones">
+            <ul>
+                <li>El sistema está en desarrollo activo, por lo que pueden agregarse o modificarse funcionalidades según necesidades del cliente.</li>
+                <li>La estructura está pensada para ser escalable y fácil de mantener.</li>
+                <li>Se recomienda mantener actualizadas las dependencias y realizar pruebas después de cada cambio importante.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
